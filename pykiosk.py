@@ -15,7 +15,7 @@ urls = ['https://status.g2lytics.com',
 
 timer = 20
 
-driver = webdriver.Chrome("/Users/stevenpurcell/Downloads/chromedriver")
+driver = webdriver.Chrome("./chromedriver")
 
 def callNewPage(index):
     driver.get(urls[index])
@@ -23,10 +23,10 @@ def callNewPage(index):
     if index < len(urls)-1:
         callNewPage(index+1)
     if index >= len(urls)-1:
-        driver.delete_all_cookies()
-        send_command = ('POST', '/session/$sessionId/chromium/send_command')
-        driver.command_executor._commands['SEND_COMMAND'] = send_command
-        driver.execute('SEND_COMMAND', dict(cmd='Network.clearBrowserCache', params={}))
+        # driver.delete_all_cookies()
+        # send_command = ('POST', '/session/$sessionId/chromium/send_command')
+        # driver.command_executor._commands['SEND_COMMAND'] = send_command
+        # driver.execute('SEND_COMMAND', dict(cmd='Network.clearBrowserCache', params={}))
         callNewPage(0)
 
 callNewPage(0)
